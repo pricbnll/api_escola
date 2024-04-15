@@ -1,8 +1,15 @@
-# Semana 10 - Introdução ao Sequelize
+# Semana 10/11 SENAI e FloripaMaisTech turma TRIP /2024
 
-## Rodar o repositório:
+## 🏦 Sobre o projetode Banco de dados
 
-### Na primeira vez é necessário instalar as dependencias:
+**Objetivo: Aprender a mexer com banco de dados e suas atualizações**
+
+  Esta é uma API simples para gerenciamento de cursos, onde você pode realizar operações como criar, listar, atualizar e deletar alunos, cursos e matriculas.
+  A API permite a pesquisa de cursos por nome e duração em horas.
+
+## 🤖 Rodar o repositório:
+
+### ≈Na primeira vez é necessário instalar as dependencias:
 1. `npm install`
 2. Se for em ambiente local: `npm install --dev`
 3. `cp .env_example .env`
@@ -36,3 +43,39 @@ https://sequelize.org/docs/v6/core-concepts/model-basics/
 `npm install -g sequelize-cli` 
 ### instalar o dotenv
 `npm install dotenv`
+
+
+## A API estará disponível em http://localhost:3000.
+
+
+## 🛠️ Construído com
+
+- Trello - aprendendo a criar e mover cards.
+- VsCode - aprendendo a usar a ferramenta e suas extensões.
+- GitHub - aprendendo a utilizar sempre enviando ou trazendo para meu local o repositório, fazendo alterações...
+- Node.js - Instalação
+- Express - CRUD
+- Sequelize - aprendendo a usar migration, models, routes...
+- Postgres
+- Postman 
+  
+
+## 🧑🏻‍🏫 Professores
+
+* **Rawan.H** - [GitHub](https://github.com/Hawangledt)
+* **Douglas Cavalcante** - [GitHub](https://github.com/douglas-cavalcante)
+
+ 
+
+## 📄 Acompanhe as resoluções e dicas de aulas
+
+**FuturoDev - Trip** - [GitHub do curso](https://github.com/FuturoDEV-Trip/modulo-01)
+
+
+## 🎁 Expressões de gratidão
+
+* Conte a outras pessoas sobre este estudo 📢;
+* Lab365 e todos os monitores;
+* Qualquer dúvida ou sugestão de melhorar o código eu aceito;
+* Um agradecimento publicamente 🫂;
+* etc.
