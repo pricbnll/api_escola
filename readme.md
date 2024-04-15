@@ -1,6 +1,6 @@
 # Semana 10/11 SENAI e FloripaMaisTech turma TRIP /2024
 
-## 🏦 Sobre o projetode Banco de dados
+## 🏦 Sobre o projeto de Banco de dados
 
 **Objetivo: Aprender a mexer com banco de dados e suas atualizações**
 
