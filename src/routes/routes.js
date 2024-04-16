@@ -131,7 +131,7 @@ routes.delete('/alunos', async (req, res) => {
             where: {}, // Sem condições, deletará todos os registros
         });
 
-        res.status(204).json({ message: 'Todos os alunos foram deletados com sucesso.' });
+        res.status(200).json({ message: 'Todos os alunos foram deletados com sucesso.' });
     } catch (error) {
         // console.error('Erro ao deletar alunos:', error);
         res.status(500).json({ mensagem: 'Erro ao deletar alunos.' });
@@ -271,7 +271,7 @@ routes.delete('/cursos', async (req, res) => {
             where: {},
         });
 
-        res.status(204).json({ mensagem: 'Todos os cursos foram deletados com sucesso.' })
+        res.status(200).json({ mensagem: 'Todos os cursos foram deletados com sucesso.' })
     } catch (error) {
         // console.error('Erro ao deletar cursos:', error);
         res.status(500).json({ mensagem: 'Erro ao deletar cursos.' });
