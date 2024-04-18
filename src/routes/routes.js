@@ -1,7 +1,7 @@
 const { Router } = require("express"); //
 const Aluno = require("../models/Aluno");
 const Curso = require("../models/Curso");
-const Professor = require("../models/Professor")
+const Professor = require("../models/Professor");
 
 const routes = new Router();
 
@@ -153,15 +153,15 @@ routes.put("/alunos/:id", async (req, res) => {
 
 // Rota para deletar alunos pelo id
 //http://localhost:3300/alunos/1
-routes.delete("/cursos/:id", async (req, res) => {
+routes.delete("/alunos/:id", async (req, res) => {
   const { id } = req.params;
   try {
-    const aluno = await Curso.findByPk(id);
+    const aluno = await Aluno.findByPk(id);
     if (!aluno) {
       return res.status(404).json({ mensagem: "Aluno não encontrado." });
     }
     // const cursoDeletado = { ...curso.toJSON() };   // Armazena os dados do curso antes de deletá-lo
-    await Curso.destroy({
+    await ALuno.destroy({
       where: {
         id: id,
       },
@@ -267,24 +267,24 @@ routes.get("/cursos/:id", async (req, res) => {
 
 // Rota para listar cursos por nome e duração
 routes.get("/cursos", async (req, res) => {
-    try {
-            let params = {};
-        if(req.query.nome)  {
-            // o ...params, cria uma cópia do params com os chaves e valores já existentes
-            params = {...params, nome: req.query.nome}
-        }
-
-        if(req.query.duracao_horas)  {
-            // o ...params, cria uma cópia do params com os chaves e valores já existentes
-            params = {...params, duracao_horas: req.query.duracao_horas}
-        }
-        res.json(cursos);
-        } catch (error) {
-        console.log(error.message);
-        res
-            .status(500)
-            .json({ mensagem: "Não foi possível listar o curso específico" });
+  try {
+    let params = {};
+    if (req.query.nome) {
+      // o ...params, cria uma cópia do params com os chaves e valores já existentes
+      params = { ...params, nome: req.query.nome };
     }
+
+    if (req.query.duracao_horas) {
+      // o ...params, cria uma cópia do params com os chaves e valores já existentes
+      params = { ...params, duracao_horas: req.query.duracao_horas };
+    }
+    res.json(cursos);
+  } catch (error) {
+    console.log(error.message);
+    res
+      .status(500)
+      .json({ mensagem: "Não foi possível listar o curso específico" });
+  }
 });
 
 ////OU este pelo ChatGpt
@@ -312,8 +312,6 @@ routes.get("/cursos", async (req, res) => {
 //     res.status(500).json({ mensagem: "Erro ao buscar cursos." });
 //   }
 // });
-
-
 
 // Rota para atualizar curso pelo id
 //http://localhost:3300/cursos/1
@@ -372,15 +370,12 @@ routes.delete("/cursos", async (req, res) => {
 
     res
       .status(200)
-      .json({  error: "Todos os cursos foram deletados com sucesso." });
+      .json({ error: "Todos os cursos foram deletados com sucesso." });
   } catch (error) {
     // console.error('Erro ao deletar cursos:', error);
     res.status(500).json({ mensagem: "Erro ao deletar cursos." });
   }
 });
-
-
-
 
 //CRUD PARA PROFESSORES
 
@@ -400,43 +395,42 @@ routes.post("/professores", async (req, res) => {
         .status(400)
         .json({ mensagem: "O número do celular é obrigatória" });
     }
-    if (!celular.match(/^((5{2})?(\d{2})?([987])?(\d{4})(\d{4}))$/)) {
+    // if (!celular.match(/^((5{2})?(\d{2})?([987])?(\d{4})(\d{4}))$/)) {
+    //   //5548998132222 ou 48998132222 ou 998132222
+    //   return res
+    //     .status(400)
+    //     .json({ mensagem: "O número do celular não está no formato correto." });
+      function MascaraTelefone(tel){
+        if(!mascaraInteiro(tel)){
+          return res
+               .status(400)
+               .json({ mensagem: "O número do celular não está no formato correto, por favor digite (00) 0000-0000" });
+        }
+        return formataCampo(tel, '(00) 0000-0000')
+        // console.log(error)
+    }
+    if (!especialidade) {
       return res
         .status(400)
-        .json({ mensagem: "O número do celular não está no formato correto" });
-    }
-    if(!especialidade) {
-      return res.status(400).json({ mensagem: "A  especialidade do professor é obrigatório" });
+        .json({ mensagem: "A  especialidade do professor é obrigatório" });
     }
 
     const professor = await Professor.create({
       nome: nome,
       celular: celular,
-      especialidade: especialidade
+      especialidade: especialidade,
     });
 
-    res.status(201).json(professoro);
+    res.status(201).json(professor);
   } catch (error) {
     console.log(error.message);
     res.status(500).json({ mensagem: "Não possível cadastrar o professor." });
   }
 });
 
-
-
-// ----------------------------/----------------------
-
-
-
-
-
-
-
-
-
-// Rota para listar alunos pelo nome
-//http://localhost:3300/alunoss
-routes.get("/alunos", async (req, res) => {
+// Rota para listar professores pelo nome
+//http://localhost:3300/professores
+routes.get("/professores", async (req, res) => {
   try {
     let params = {};
 
@@ -444,102 +438,101 @@ routes.get("/alunos", async (req, res) => {
       params = { ...params, nome: req.query.nome };
     }
 
-    const aluno = await Aluno.findAll({
+    const professor = await Professor.findAll({
       where: params,
     });
 
-    res.status(200).json(aluno);
+    res.status(200).json(professor);
   } catch (error) {
     console.log(error.message);
     res
       .status(500)
-      .json({ mensagem: "Não foi possível listar o aluno específico" });
+      .json({ mensagem: "Não foi possível listar o professor específico" });
   }
 });
 
-
-// Rota para listar alunos pelo id
+// Rota para listar professores pelo id
 //http://localhost:3300/alunos/:id
-routes.get("/alunos/:id", async (req, res) => {
+routes.get("/professores/:id", async (req, res) => {
   try {
     const { id } = req.params;
 
-    const aluno = await Aluno.findByPk(id);
+    const professor = await Professor.findByPk(id);
 
-    if (!aluno) {
-      return res.status(404).json({ mensagem: "Aluno não encontrado." });
+    if (!professor) {
+      return res.status(404).json({ mensagem: "Professor não encontrado." });
     }
-    res.json(aluno);
+    res.json(professor);
   } catch (error) {
     console.log(error.message);
     res
       .status(500)
-      .json({ mensagem: "não foi possível listar o aluno específico" });
+      .json({ mensagem: "não foi possível listar o professor específico" });
   }
 });
 
-// Rota para atualizar aluno pelo id
-//http://localhost:3300/alunos/1
-routes.put("/alunos/:id", async (req, res) => {
+// Rota para atualizar professor pelo id
+//http://localhost:3300/professores/1
+routes.put("/professores/:id", async (req, res) => {
   try {
     const { id } = req.params;
 
-    const aluno = await Aluno.findByPk(id);
+    const professor = await Professor.findByPk(id);
 
-    if (!aluno) {
-      return res.status(404).json({ mensagem: "Aluno não encontrado" });
+    if (!professor) {
+      return res.status(404).json({ mensagem: "Professor não encontrado" });
     }
-    aluno.update(req.body);
+    professor.update(req.body);
 
-    await aluno.save();
+    await professor.save();
 
-    res.status(200).json(aluno);
+    res.status(200).json(professor);
   } catch (error) {
     console.log(error.message);
     res
       .status(500)
-      .json({ mensagem: "Não foi possível atualizar o cadastro do aluno" });
+      .json({
+        mensagem: "Não foi possível atualizar o cadastro do professores",
+      });
   }
 });
 
-// Rota para deletar alunos pelo id
-//http://localhost:3300/alunos/1
-routes.delete("/cursos/:id", async (req, res) => {
+// Rota para deletar professor pelo id
+//http://localhost:3300/professores/1
+routes.delete("/professores/:id", async (req, res) => {
   const { id } = req.params;
   try {
-    const aluno = await Curso.findByPk(id);
-    if (!aluno) {
-      return res.status(404).json({ mensagem: "Aluno não encontrado." });
+    const professor = await Professor.findByPk(id);
+    if (!professor) {
+      return res.status(404).json({ mensagem: "Professor não encontrado." });
     }
-    // const cursoDeletado = { ...curso.toJSON() };   // Armazena os dados do curso antes de deletá-lo
-    await Curso.destroy({
+    const professorDeletado = { ...professor.toJSON() };  
+    await Professor.destroy({
       where: {
         id: id,
       },
     });
 
-    // res.status(200).json(cursoDeletado)
+    res.status(200).json(professorDeletado)
     res.status(204).json();
   } catch (error) {
-    console.error("Erro ao deletar aluno:", error);
-    res.status(500).json({ mensagem: "Erro ao deletar aluno." });
+    console.error("Erro ao deletar professor:", error);
+    res.status(500).json({ mensagem: "Erro ao deletar professor." });
   }
 });
 
-// Rota para deletar todos os alunos
-routes.delete("/alunos", async (req, res) => {
+// Rota para deletar todos os professores
+routes.delete("/professores", async (req, res) => {
   try {
-    // Deleta todos os registros da tabela Alunos
-    await Aluno.destroy({
-      where: {}, // Sem condições, deletará todos os registros
+    await Professor.destroy({
+      where: {}, 
     });
 
     res
       .status(200)
-      .json({ mensagem: "Todos os alunos foram deletados com sucesso." });
+      .json({ mensagem: "Todos os professores foram deletados com sucesso." });
   } catch (error) {
-    // console.error('Erro ao deletar alunos:', error);
-    res.status(500).json({ mensagem: "Erro ao deletar alunos." });
+    res.status(500).json({ mensagem: "Erro ao deletar professores." });
   }
 });
 
