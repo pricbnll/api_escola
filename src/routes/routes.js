@@ -1,6 +1,7 @@
 const { Router } = require("express"); //
 const Aluno = require("../models/Aluno");
 const Curso = require("../models/Curso");
+const Professor = require("../models/Professor")
 
 const routes = new Router();
 
@@ -35,12 +36,12 @@ routes.post("/alunos", async (req, res) => {
     const celular = req.body.celular;
 
     if (!nome) {
-      return res.status(400).json({ messagem: "O nome é obrigatório" });
+      return res.status(400).json({ mensagem: "O nome é obrigatório" });
     }
     if (!data_nascimento) {
       return res
         .status(400)
-        .json({ messagem: "A data de nascimento é obrigatória" });
+        .json({ mensagem: "A data de nascimento é obrigatória" });
     }
     if (!data_nascimento.match(/\d{4}-\d{2}-\d{2}/gm)) {
       return res
@@ -57,7 +58,7 @@ routes.post("/alunos", async (req, res) => {
     res.status(201).json(aluno);
   } catch (error) {
     console.log(error.message);
-    res.status(500).json({ error: "Não possível cadastrar o aluno" });
+    res.status(500).json({ mensagem: "Não possível cadastrar o aluno" });
   }
 });
 
@@ -87,7 +88,7 @@ routes.get("/alunos", async (req, res) => {
     console.log(error.message);
     res
       .status(500)
-      .json({ error: "Não foi possível listar o aluno específico" });
+      .json({ mensagem: "Não foi possível listar o aluno específico" });
   }
 });
 
@@ -115,14 +116,14 @@ routes.get("/alunos/:id", async (req, res) => {
     const aluno = await Aluno.findByPk(id);
 
     if (!aluno) {
-      return res.status(404).json({ message: "Aluno não encontrado." });
+      return res.status(404).json({ mensagem: "Aluno não encontrado." });
     }
     res.json(aluno);
   } catch (error) {
     console.log(error.message);
     res
       .status(500)
-      .json({ error: "não foi possível listar o aluno específico" });
+      .json({ mensagem: "não foi possível listar o aluno específico" });
   }
 });
 
@@ -135,7 +136,7 @@ routes.put("/alunos/:id", async (req, res) => {
     const aluno = await Aluno.findByPk(id);
 
     if (!aluno) {
-      return res.status(404).json({ error: "Aluno não encontrado" });
+      return res.status(404).json({ mensagem: "Aluno não encontrado" });
     }
     aluno.update(req.body);
 
@@ -146,7 +147,7 @@ routes.put("/alunos/:id", async (req, res) => {
     console.log(error.message);
     res
       .status(500)
-      .json({ error: "Não foi possível atualizar o cadastro do aluno" });
+      .json({ mensagem: "Não foi possível atualizar o cadastro do aluno" });
   }
 });
 
@@ -184,7 +185,7 @@ routes.delete("/alunos", async (req, res) => {
 
     res
       .status(200)
-      .json({ message: "Todos os alunos foram deletados com sucesso." });
+      .json({ mensagem: "Todos os alunos foram deletados com sucesso." });
   } catch (error) {
     // console.error('Erro ao deletar alunos:', error);
     res.status(500).json({ mensagem: "Erro ao deletar alunos." });
@@ -240,7 +241,7 @@ routes.get("/cursos", async (req, res) => {
     console.log(error.message);
     res
       .status(500)
-      .json({ error: "Não foi possível listar o curso específico" });
+      .json({ mensagem: "Não foi possível listar o curso específico" });
   }
 });
 
@@ -253,14 +254,14 @@ routes.get("/cursos/:id", async (req, res) => {
     const curso = await Curso.findByPk(id);
 
     if (!curso) {
-      return res.status(404).json({ message: "Curso não encontrado." });
+      return res.status(404).json({ mensagem: "Curso não encontrado." });
     }
     res.json(curso);
   } catch (error) {
     console.log(error.message);
     res
       .status(500)
-      .json({ error: "Não foi possível listar o curso específico" });
+      .json({ mensagem: "Não foi possível listar o curso específico" });
   }
 });
 
@@ -282,7 +283,7 @@ routes.get("/cursos", async (req, res) => {
         console.log(error.message);
         res
             .status(500)
-            .json({ error: "Não foi possível listar o curso específico" });
+            .json({ mensagem: "Não foi possível listar o curso específico" });
     }
 });
 
@@ -371,11 +372,12 @@ routes.delete("/cursos", async (req, res) => {
 
     res
       .status(200)
-      .json({ mensagem: "Todos os cursos foram deletados com sucesso." });
+      .json({  error: "Todos os cursos foram deletados com sucesso." });
   } catch (error) {
     // console.error('Erro ao deletar cursos:', error);
     res.status(500).json({ mensagem: "Erro ao deletar cursos." });
   }
 });
+
 
 module.exports = routes;
