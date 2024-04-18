@@ -1,0 +1,340 @@
+{
+	"info": {
+		"_postman_id": "8d901b57-5f20-41c6-865e-bc48355db93e",
+		"name": "API Escola TRIP",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "33911854"
+	},
+	"item": [
+		{
+			"name": "bem vindo",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastra um novo aluno",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\": \"Pri\",\n    \"celular\":\"444-444\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3300/alunos"
+			},
+			"response": []
+		},
+		{
+			"name": "Listar todos os alunos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:3300/alunos"
+			},
+			"response": []
+		},
+		{
+			"name": "Listar alunos pelo nome",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:3300/alunos"
+			},
+			"response": []
+		},
+		{
+			"name": "Listar alunos pelo id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:3300/alunos/8"
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar um aluno pelo id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"Nome\": \"Patricia\",\n    \"data_nascimento\": \"2015-09-12\",\n    \"celular\":\"444-1111\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3300/alunos/13"
+			},
+			"response": []
+		},
+		{
+			"name": "Deletar um aluno pelo id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:3300/alunos/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Deletar todos os alunos",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:3300/alunos"
+			},
+			"response": []
+		},
+		{
+			"name": "Criar um novo curso",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\": \"Design\",\n    \"duracao_horas\": 200\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3300/cursos"
+			},
+			"response": []
+		},
+		{
+			"name": "Listar todos os cursos",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3300/cursos"
+			},
+			"response": []
+		},
+		{
+			"name": "Listar cursos pelo nome",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3300/cursos?nome=Frontend",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3300",
+					"path": [
+						"cursos"
+					],
+					"query": [
+						{
+							"key": "nome",
+							"value": "Frontend"
+						},
+						{
+							"key": null,
+							"value": "Frontend",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar curso pelo id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:3300/cursos/3"
+			},
+			"response": []
+		},
+		{
+			"name": "Listar cursos pelo nome e duração de horas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3300/cursos?nome=Frontend",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3300",
+					"path": [
+						"cursos"
+					],
+					"query": [
+						{
+							"key": "nome",
+							"value": "Frontend"
+						},
+						{
+							"key": null,
+							"value": "Frontend",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar um curso pelo id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\": \"Paula\",\n    \"data_nascimento\": \"2011-09-12\",\n    \"celular\":\"444-1111\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3300/curso/"
+			},
+			"response": []
+		},
+		{
+			"name": "Deletar um curso pelo id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:3300/alunos/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Deletar todos os cursos",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:3300/alunos"
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastra um novo professor",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\": \"Paulo\",\n    \"celular\":\"(48)99888111\",\n    \"especialidade\": \"Português\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3300/professores"
+			},
+			"response": []
+		},
+		{
+			"name": "Listar todos os professores",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:3300/professores"
+			},
+			"response": []
+		},
+		{
+			"name": "Listar professores pelo nome",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3300/professores?nome=Paulo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3300",
+					"path": [
+						"professores"
+					],
+					"query": [
+						{
+							"key": "nome",
+							"value": "Paulo"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar professores pelo id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:3300/professores/8"
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar um professor pelo id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"Nome\": \"Patricia\",\n    \"data_nascimento\": \"2015-09-12\",\n    \"celular\":\"444-1111\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3300/alunos/13"
+			},
+			"response": []
+		},
+		{
+			"name": "Deletar um professor pelo id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:3300/professores/3"
+			},
+			"response": []
+		},
+		{
+			"name": "Deletar todos os professores",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:3300/alunos"
+			},
+			"response": []
+		}
+	]
+}
