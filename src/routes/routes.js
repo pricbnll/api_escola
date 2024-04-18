@@ -380,4 +380,167 @@ routes.delete("/cursos", async (req, res) => {
 });
 
 
+
+
+//CRUD PARA PROFESSORES
+
+//Rota para adicionar novo professor e validar os dados
+//http://localhost:3300/professores
+routes.post("/professores", async (req, res) => {
+  try {
+    const nome = req.body.nome;
+    const celular = req.body.celular;
+    const especialidade = req.body.especialidade;
+
+    if (!nome) {
+      return res.status(400).json({ mensagem: "O nome é obrigatório" });
+    }
+    if (!celular) {
+      return res
+        .status(400)
+        .json({ mensagem: "O número do celular é obrigatória" });
+    }
+    if (!celular.match(/^((5{2})?(\d{2})?([987])?(\d{4})(\d{4}))$/)) {
+      return res
+        .status(400)
+        .json({ mensagem: "O número do celular não está no formato correto" });
+    }
+    if(!especialidade) {
+      return res.status(400).json({ mensagem: "A  especialidade do professor é obrigatório" });
+    }
+
+    const professor = await Professor.create({
+      nome: nome,
+      celular: celular,
+      especialidade: especialidade
+    });
+
+    res.status(201).json(professoro);
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({ mensagem: "Não possível cadastrar o professor." });
+  }
+});
+
+
+
+// ----------------------------/----------------------
+
+
+
+
+
+
+
+
+
+// Rota para listar alunos pelo nome
+//http://localhost:3300/alunoss
+routes.get("/alunos", async (req, res) => {
+  try {
+    let params = {};
+
+    if (req.query.nome) {
+      params = { ...params, nome: req.query.nome };
+    }
+
+    const aluno = await Aluno.findAll({
+      where: params,
+    });
+
+    res.status(200).json(aluno);
+  } catch (error) {
+    console.log(error.message);
+    res
+      .status(500)
+      .json({ mensagem: "Não foi possível listar o aluno específico" });
+  }
+});
+
+
+// Rota para listar alunos pelo id
+//http://localhost:3300/alunos/:id
+routes.get("/alunos/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const aluno = await Aluno.findByPk(id);
+
+    if (!aluno) {
+      return res.status(404).json({ mensagem: "Aluno não encontrado." });
+    }
+    res.json(aluno);
+  } catch (error) {
+    console.log(error.message);
+    res
+      .status(500)
+      .json({ mensagem: "não foi possível listar o aluno específico" });
+  }
+});
+
+// Rota para atualizar aluno pelo id
+//http://localhost:3300/alunos/1
+routes.put("/alunos/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const aluno = await Aluno.findByPk(id);
+
+    if (!aluno) {
+      return res.status(404).json({ mensagem: "Aluno não encontrado" });
+    }
+    aluno.update(req.body);
+
+    await aluno.save();
+
+    res.status(200).json(aluno);
+  } catch (error) {
+    console.log(error.message);
+    res
+      .status(500)
+      .json({ mensagem: "Não foi possível atualizar o cadastro do aluno" });
+  }
+});
+
+// Rota para deletar alunos pelo id
+//http://localhost:3300/alunos/1
+routes.delete("/cursos/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const aluno = await Curso.findByPk(id);
+    if (!aluno) {
+      return res.status(404).json({ mensagem: "Aluno não encontrado." });
+    }
+    // const cursoDeletado = { ...curso.toJSON() };   // Armazena os dados do curso antes de deletá-lo
+    await Curso.destroy({
+      where: {
+        id: id,
+      },
+    });
+
+    // res.status(200).json(cursoDeletado)
+    res.status(204).json();
+  } catch (error) {
+    console.error("Erro ao deletar aluno:", error);
+    res.status(500).json({ mensagem: "Erro ao deletar aluno." });
+  }
+});
+
+// Rota para deletar todos os alunos
+routes.delete("/alunos", async (req, res) => {
+  try {
+    // Deleta todos os registros da tabela Alunos
+    await Aluno.destroy({
+      where: {}, // Sem condições, deletará todos os registros
+    });
+
+    res
+      .status(200)
+      .json({ mensagem: "Todos os alunos foram deletados com sucesso." });
+  } catch (error) {
+    // console.error('Erro ao deletar alunos:', error);
+    res.status(500).json({ mensagem: "Erro ao deletar alunos." });
+  }
+});
+
 module.exports = routes;
