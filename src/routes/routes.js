@@ -38,7 +38,7 @@ routes.post("/login", async (req, res) => {
       if (!email) {
           return res.status(400).json({ mensagem: 'O email é obrigatório' })
       }
-
+ 
       if (!password) {
           return res.status(400).json({ mensagem: 'O password é obrigatório' })
       }
@@ -173,7 +173,7 @@ routes.get("/alunos/:id", auth, async (req, res) => {
 
 // Rota para atualizar aluno pelo id
 //http://localhost:3300/alunos/1
-routes.put("/alunos/:id", async (req, res) => {
+routes.put("/alunos/:id", auth, async (req, res) => {
   try {
     const { id } = req.params;
 
@@ -197,7 +197,7 @@ routes.put("/alunos/:id", async (req, res) => {
 
 // Rota para deletar alunos pelo id
 //http://localhost:3300/alunos/1
-routes.delete("/alunos/:id", async (req, res) => {
+routes.delete("/alunos/:id", auth, async (req, res) => {
   const { id } = req.params;
   try {
     const aluno = await Aluno.findByPk(id);
@@ -220,7 +220,7 @@ routes.delete("/alunos/:id", async (req, res) => {
 });
 
 // Rota para deletar todos os alunos
-routes.delete("/alunos", async (req, res) => {
+routes.delete("/alunos", auth, async (req, res) => {
   try {
     // Deleta todos os registros da tabela Alunos
     await Aluno.destroy({
