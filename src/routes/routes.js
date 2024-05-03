@@ -25,6 +25,35 @@ routes.get("/bem_vindo", (req, res) => {
   res.json({ name: "Bem vindo" });
 });
 
+//CRUD PARA LOGIN
+routes.post("/login", async (req, res) => {
+    try {
+      const email = req.body.email
+      const password = req.body.password
+
+      if (!email) {
+          return res.status(400).json({ mensagem: 'O email é obrigatório' })
+      }
+
+      if (!password) {
+          return res.status(400).json({ mensagem: 'O password é obrigatório' })
+      }
+
+      const aluno = await Aluno.findOne({
+          where: { email: email, password: password }
+      })
+
+      if (!aluno) {
+          return res.status(404).json({ error: 'Nenhum aluno corresponde a email e senha fornecidos!' })
+      }
+   
+      res.status(200).json('Este é o seu token JWT: JWT')
+
+    } catch (error) {
+        return res.status(500).json({ error: error, mensagem: 'Algo deu errado!' })
+    }
+});
+
 //CRUD PARA ALUNOS
 
 //Rota para adicionar novo aluno e validar os dados
@@ -34,6 +63,8 @@ routes.post("/alunos", async (req, res) => {
     const nome = req.body.nome;
     const data_nascimento = req.body.data_nascimento;
     const celular = req.body.celular;
+    const email = req.body.email;
+    const password = req.body.password;
 
     if (!nome) {
       return res.status(400).json({ mensagem: "O nome é obrigatório" });
@@ -46,13 +77,15 @@ routes.post("/alunos", async (req, res) => {
     if (!data_nascimento.match(/\d{4}-\d{2}-\d{2}/gm)) {
       return res
         .status(400)
-        .json({ messagem: "A data de nascimento não está no formato correto" });
+        .json({ mensagem: "A data de nascimento não está no formato correto" });
     }
 
     const aluno = await Aluno.create({
       nome: nome,
       data_nascimento: data_nascimento,
       celular: celular,
+      email: email,
+      password: password
     });
 
     res.status(201).json(aluno);
