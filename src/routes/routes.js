@@ -22,7 +22,7 @@ const routes = new Router();
 
 //rota bem vindo
 routes.get("/bem_vindo", (req, res) => {
-  res.json({ name: "Bem vindo" });
+  res.json({ Mensagem: "Bem vindo" });
 });
 
 //CRUD PARA LOGIN
@@ -47,7 +47,7 @@ routes.post("/login", async (req, res) => {
           return res.status(404).json({ error: 'Nenhum aluno corresponde a email e senha fornecidos!' })
       }
    
-      res.status(200).json('Este é o seu token JWT: JWT')
+      res.status(200).json( {mensagem: 'Este é o seu token JWT: JWT'})
 
     } catch (error) {
         return res.status(500).json({ error: error, mensagem: 'Algo deu errado!' })
