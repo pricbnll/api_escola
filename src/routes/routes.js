@@ -2,6 +2,8 @@ const { Router } = require("express"); //
 const Aluno = require("../models/Aluno");
 const Curso = require("../models/Curso");
 const Professor = require("../models/Professor");
+const { sign } = require ( 'jsonwebtoken')
+const { auth } = require ("../middleware/auth")
 
 const routes = new Router();
 
@@ -18,11 +20,48 @@ const routes = new Router();
 // criar uma rota
 // tipo
 // path
-// implementacao
+// implementação
+
+//todas as rotas que quero que seja PRIVADA coloco o middleware <auth> na frente
 
 //rota bem vindo
 routes.get("/bem_vindo", (req, res) => {
-  res.json({ name: "Bem vindo" });
+  res.json({ Mensagem: "Bem vindo" });
+});
+
+//CRUD PARA LOGIN
+routes.post("/login", async (req, res) => {
+    try {
+      const email = req.body.email
+      const password = req.body.password
+
+      if (!email) {
+          return res.status(400).json({ mensagem: 'O email é obrigatório' })
+      }
+ 
+      if (!password) {
+          return res.status(400).json({ mensagem: 'O password é obrigatório' })
+      }
+
+      const aluno = await Aluno.findOne({
+          where: { email: email, password: password }
+      })
+
+      if (!aluno) {
+          return res.status(404).json({ error: 'Nenhum aluno corresponde a email e senha fornecidos!' })
+      }
+
+      //o que julgo importante ter no token
+      const payload = {sub:aluno.id, email: aluno.email, nome: aluno.nome}
+      //console.log(payload)
+      // token terá este payload com esta chave secreta que esta o .env
+      const token = sign(payload, process.env.SECRET_JWT)
+   
+      res.status(200).json( { Token : token })
+s
+    } catch (error) {
+        return res.status(500).json({ error: error, mensagem: 'Algo deu errado!' })
+    }
 });
 
 //CRUD PARA ALUNOS
@@ -34,6 +73,8 @@ routes.post("/alunos", async (req, res) => {
     const nome = req.body.nome;
     const data_nascimento = req.body.data_nascimento;
     const celular = req.body.celular;
+    const email = req.body.email;
+    const password = req.body.password;
 
     if (!nome) {
       return res.status(400).json({ mensagem: "O nome é obrigatório" });
@@ -46,13 +87,15 @@ routes.post("/alunos", async (req, res) => {
     if (!data_nascimento.match(/\d{4}-\d{2}-\d{2}/gm)) {
       return res
         .status(400)
-        .json({ messagem: "A data de nascimento não está no formato correto" });
+        .json({ mensagem: "A data de nascimento não está no formato correto" });
     }
 
     const aluno = await Aluno.create({
       nome: nome,
       data_nascimento: data_nascimento,
       celular: celular,
+      email: email,
+      password: password
     });
 
     res.status(201).json(aluno);
@@ -64,33 +107,34 @@ routes.post("/alunos", async (req, res) => {
 
 //Rota Para listar todos os alunos pode usar a mesma rota para listar alunos pelo nome (e DEVE SER UMA ROTA , NAO USAR 2X)
 // //http://localhost:3300/alunos
-// routes.get("/alunos"/todos"", async (req, res) => {
-//   const alunos = await Aluno.findAll();
-//   res.json(alunos);
-// });
+routes.get("/alunos", auth,  async (req, res) => {
+  const alunos = await Aluno.findAll();
+  res.json(alunos);
+});
+
+// potencial que traz o req.payload : routes.get("/alunos/alterar_senha", auth,  async (req, res) => {id = req.payload.sub
 
 // Rota para listar alunos pelo nome
 //http://localhost:3300/alunoss
-routes.get("/alunos", async (req, res) => {
-  try {
-    let params = {};
+// routes.get("/alunos", auth, async (req, res) => {
+//   try {
 
-    if (req.query.nome) {
-      params = { ...params, nome: req.query.nome };
-    }
+//     if (req.query.nome) {
+//       params = { ...params, nome: req.query.nome };
+//     }
 
-    const aluno = await Aluno.findAll({
-      where: params,
-    });
+//     const aluno = await Aluno.findAll({
+//       where: params,
+//     });
 
-    res.status(200).json(aluno);
-  } catch (error) {
-    console.log(error.message);
-    res
-      .status(500)
-      .json({ mensagem: "Não foi possível listar o aluno específico" });
-  }
-});
+//     res.status(200).json(aluno);
+//   } catch (error) {
+//     console.log(error.message);
+//     res
+//       .status(500)
+//       .json({ mensagem: "Não foi possível listar o aluno específico" });
+//   }
+// });
 
 //outro código mais simples mas utiliza o de cima
 // routes.get('/cursos', async (req, res) => {
@@ -109,7 +153,7 @@ routes.get("/alunos", async (req, res) => {
 
 // Rota para listar alunos pelo id
 //http://localhost:3300/alunos/:id
-routes.get("/alunos/:id", async (req, res) => {
+routes.get("/alunos/:id", auth, async (req, res) => {
   try {
     const { id } = req.params;
 
@@ -129,7 +173,7 @@ routes.get("/alunos/:id", async (req, res) => {
 
 // Rota para atualizar aluno pelo id
 //http://localhost:3300/alunos/1
-routes.put("/alunos/:id", async (req, res) => {
+routes.put("/alunos/:id", auth, async (req, res) => {
   try {
     const { id } = req.params;
 
@@ -153,7 +197,7 @@ routes.put("/alunos/:id", async (req, res) => {
 
 // Rota para deletar alunos pelo id
 //http://localhost:3300/alunos/1
-routes.delete("/alunos/:id", async (req, res) => {
+routes.delete("/alunos/:id", auth, async (req, res) => {
   const { id } = req.params;
   try {
     const aluno = await Aluno.findByPk(id);
@@ -176,7 +220,7 @@ routes.delete("/alunos/:id", async (req, res) => {
 });
 
 // Rota para deletar todos os alunos
-routes.delete("/alunos", async (req, res) => {
+routes.delete("/alunos", auth, async (req, res) => {
   try {
     // Deleta todos os registros da tabela Alunos
     await Aluno.destroy({
