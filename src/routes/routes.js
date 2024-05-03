@@ -240,7 +240,7 @@ routes.delete("/alunos", auth, async (req, res) => {
 
 // Rota para adicionar novos cursos
 //http://localhost:3300/cursos
-routes.post("/cursos", async (req, res) => {
+routes.post("/cursos", auth,  async (req, res) => {
   try {
     const nome = req.body.nome;
     const duracao_horas = req.body.duracao_horas;
@@ -268,7 +268,7 @@ routes.post("/cursos", async (req, res) => {
 
 // Rota para listar cursos pelo nome
 //http://localhost:3300/cursos
-routes.get("/cursos", async (req, res) => {
+routes.get("/cursos", auth,  async (req, res) => {
   try {
     let params = {};
 
@@ -291,7 +291,7 @@ routes.get("/cursos", async (req, res) => {
 
 // Rota para listar curso pelo id
 //http://localhost:3300/cursos/:id
-routes.get("/cursos/:id", async (req, res) => {
+routes.get("/cursos/:id", auth,  async (req, res) => {
   try {
     const { id } = req.params;
 
@@ -310,7 +310,7 @@ routes.get("/cursos/:id", async (req, res) => {
 });
 
 // Rota para listar cursos por nome e duração
-routes.get("/cursos", async (req, res) => {
+routes.get("/cursos", auth,  async (req, res) => {
   try {
     let params = {};
     if (req.query.nome) {
@@ -332,7 +332,7 @@ routes.get("/cursos", async (req, res) => {
 });
 
 ////OU este pelo ChatGpt
-// routes.get("/cursos", async (req, res) => {
+// routes.get("/cursos", auth,  async (req, res) => {
 //   try {
 //     const { nome, duracao_horas } = req.query;
 //     const condicao = {};
@@ -359,7 +359,7 @@ routes.get("/cursos", async (req, res) => {
 
 // Rota para atualizar curso pelo id
 //http://localhost:3300/cursos/1
-routes.put("/cursos/:id", async (req, res) => {
+routes.put("/cursos/:id", auth,  async (req, res) => {
   const { id } = req.params;
   const { nome, duracao_horas } = req.body;
 
@@ -383,7 +383,7 @@ routes.put("/cursos/:id", async (req, res) => {
 
 // Rota para deletar CURSO pelo id
 //http://localhost:3300/cursos/1
-routes.delete("/cursos/:id", async (req, res) => {
+routes.delete("/cursos/:id", auth,  async (req, res) => {
   const { id } = req.params;
   try {
     const curso = await Curso.findByPk(id);
@@ -406,7 +406,7 @@ routes.delete("/cursos/:id", async (req, res) => {
 });
 
 // Rota para deletar todos os cursos
-routes.delete("/cursos", async (req, res) => {
+routes.delete("/cursos", auth,  async (req, res) => {
   try {
     await Curso.destroy({
       where: {},
@@ -425,7 +425,7 @@ routes.delete("/cursos", async (req, res) => {
 
 //Rota para adicionar novo professor e validar os dados
 //http://localhost:3300/professores
-routes.post("/professores", async (req, res) => {
+routes.post("/professores", auth,  async (req, res) => {
   try {
     const nome = req.body.nome;
     const celular = req.body.celular;
@@ -474,7 +474,7 @@ routes.post("/professores", async (req, res) => {
 
 // Rota para listar professores pelo nome
 //http://localhost:3300/professores
-routes.get("/professores", async (req, res) => {
+routes.get("/professores", auth,  async (req, res) => {
   try {
     let params = {};
 
@@ -497,7 +497,7 @@ routes.get("/professores", async (req, res) => {
 
 // Rota para listar professores pelo id
 //http://localhost:3300/alunos/:id
-routes.get("/professores/:id", async (req, res) => {
+routes.get("/professores/:id", auth,  async (req, res) => {
   try {
     const { id } = req.params;
 
@@ -517,7 +517,7 @@ routes.get("/professores/:id", async (req, res) => {
 
 // Rota para atualizar professor pelo id
 //http://localhost:3300/professores/1
-routes.put("/professores/:id", async (req, res) => {
+routes.put("/professores/:id", auth,  async (req, res) => {
   try {
     const { id } = req.params;
 
@@ -543,7 +543,7 @@ routes.put("/professores/:id", async (req, res) => {
 
 // Rota para deletar professor pelo id
 //http://localhost:3300/professores/1
-routes.delete("/professores/:id", async (req, res) => {
+routes.delete("/professores/:id", auth,  async (req, res) => {
   const { id } = req.params;
   try {
     const professor = await Professor.findByPk(id);
@@ -566,7 +566,7 @@ routes.delete("/professores/:id", async (req, res) => {
 });
 
 // Rota para deletar todos os professores
-routes.delete("/professores", async (req, res) => {
+routes.delete("/professores", auth,  async (req, res) => {
   try {
     await Professor.destroy({
       where: {}, 
