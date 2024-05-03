@@ -43,9 +43,11 @@ https://sequelize.org/docs/v6/core-concepts/model-basics/
 `npm install -g sequelize-cli` 
 ### instalar o dotenv
 `npm install dotenv`
+### instalar o JsonWebToken ( JWT )
+`npm install jsonwebtoken`
 
-
-## A API estará disponível em http://localhost:3000.
+--> IMPORTANT!!!!
+## A API estará disponível em http://localhost:3300
 
 
 ## 🛠️ Construído com
@@ -58,6 +60,9 @@ https://sequelize.org/docs/v6/core-concepts/model-basics/
 - Sequelize - aprendendo a usar migration, models, routes...
 - Postgres
 - Postman 
+- PGAdmin - para visualizar banco de dados
+- Drawio - fazer as relações das tabelas
+- JWT e Middleware - autenticação e validação
   
 
 ## 🧑🏻‍🏫 Professores

@@ -2,6 +2,8 @@ const { Router } = require("express"); //
 const Aluno = require("../models/Aluno");
 const Curso = require("../models/Curso");
 const Professor = require("../models/Professor");
+const { sign } = require ( 'jsonwebtoken')
+const { auth } = require ("../middleware/auth")
 
 const routes = new Router();
 
@@ -18,7 +20,9 @@ const routes = new Router();
 // criar uma rota
 // tipo
 // path
-// implementacao
+// implementação
+
+//todas as rotas que quero que seja PRIVADA coloco o middleware <auth> na frente
 
 //rota bem vindo
 routes.get("/bem_vindo", (req, res) => {
@@ -46,9 +50,15 @@ routes.post("/login", async (req, res) => {
       if (!aluno) {
           return res.status(404).json({ error: 'Nenhum aluno corresponde a email e senha fornecidos!' })
       }
-   
-      res.status(200).json( {mensagem: 'Este é o seu token JWT: JWT'})
 
+      //o que julgo importante ter no token
+      const payload = {sub:aluno.id, email: aluno.email, nome: aluno.nome}
+      //console.log(payload)
+      // token terá este payload com esta chave secreta que esta o .env
+      const token = sign(payload, process.env.SECRET_JWT)
+   
+      res.status(200).json( { Token : token })
+s
     } catch (error) {
         return res.status(500).json({ error: error, mensagem: 'Algo deu errado!' })
     }
@@ -97,33 +107,34 @@ routes.post("/alunos", async (req, res) => {
 
 //Rota Para listar todos os alunos pode usar a mesma rota para listar alunos pelo nome (e DEVE SER UMA ROTA , NAO USAR 2X)
 // //http://localhost:3300/alunos
-// routes.get("/alunos"/todos"", async (req, res) => {
-//   const alunos = await Aluno.findAll();
-//   res.json(alunos);
-// });
+routes.get("/alunos", auth,  async (req, res) => {
+  const alunos = await Aluno.findAll();
+  res.json(alunos);
+});
+
+// potencial que traz o req.payload : routes.get("/alunos/alterar_senha", auth,  async (req, res) => {id = req.payload.sub
 
 // Rota para listar alunos pelo nome
 //http://localhost:3300/alunoss
-routes.get("/alunos", async (req, res) => {
-  try {
-    let params = {};
+// routes.get("/alunos", auth, async (req, res) => {
+//   try {
 
-    if (req.query.nome) {
-      params = { ...params, nome: req.query.nome };
-    }
+//     if (req.query.nome) {
+//       params = { ...params, nome: req.query.nome };
+//     }
 
-    const aluno = await Aluno.findAll({
-      where: params,
-    });
+//     const aluno = await Aluno.findAll({
+//       where: params,
+//     });
 
-    res.status(200).json(aluno);
-  } catch (error) {
-    console.log(error.message);
-    res
-      .status(500)
-      .json({ mensagem: "Não foi possível listar o aluno específico" });
-  }
-});
+//     res.status(200).json(aluno);
+//   } catch (error) {
+//     console.log(error.message);
+//     res
+//       .status(500)
+//       .json({ mensagem: "Não foi possível listar o aluno específico" });
+//   }
+// });
 
 //outro código mais simples mas utiliza o de cima
 // routes.get('/cursos', async (req, res) => {
@@ -142,7 +153,7 @@ routes.get("/alunos", async (req, res) => {
 
 // Rota para listar alunos pelo id
 //http://localhost:3300/alunos/:id
-routes.get("/alunos/:id", async (req, res) => {
+routes.get("/alunos/:id", auth, async (req, res) => {
   try {
     const { id } = req.params;
 
