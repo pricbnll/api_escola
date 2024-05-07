@@ -17,6 +17,9 @@ const Aluno = connection.define('alunos', {
     password: {
         type: DataTypes.STRING,
     }
+    //cargo: {
+       // type: DataTypes.ENUM([aluno, professor])
+    //}
 })
 
 module.exports = Aluno
