@@ -7,6 +7,12 @@
   Esta é uma API simples para gerenciamento de cursos, onde você pode realizar operações como criar, listar, atualizar e deletar alunos, cursos e matriculas.
   A API permite a pesquisa de cursos por nome e duração em horas.
 
+   - Separação de responsabilidade: 
+  Controllers - intuito de concentrar toda implementação daquela entidade = Aluno. Concentra o código em si daquela rota
+  Routes - tem finalidade de salvar todas as rotas
+  middleware - definir os middlewares da aplicação
+  models - acesso a tabela do banco de dados
+
 ## 🤖 Rodar o repositório:
 
 ### ≈Na primeira vez é necessário instalar as dependencias:
