@@ -64,3 +64,45 @@ https://sequelize.org/docs/v6/core-concepts/model-basics/
 ### instalar o JsonWebToken ( JWT )
 
 `npm install jsonwebtoken`
+
+
+
+CHATGPT
+ 
+ Aqui está um exemplo básico de como criar uma API simples usando Node.js com o framework Express:
+
+1. Instale as dependências:
+Certifique-se de ter o Node.js instalado em seu sistema. Você pode criar um novo diretório para o projeto e, em seguida, dentro desse diretório, inicialize um novo projeto Node.js e instale o Express:
+bash
+
+`mkdir exemplo-api`
+`cd exemplo-api`
+`npm init -y`
+`npm install express``
+
+2. Crie um arquivo index.js:
+Crie um arquivo chamado index.js na raiz do seu diretório do projeto. Este será o ponto de entrada para sua aplicação.
+
+3. Crie a estrutura básica da API:
+No arquivo index.js, você pode começar importando o Express e criando uma instância dele:
+javascript
+
+const express = require('express');
+const app = express();
+const port = 3000; // Porta em que o servidor vai rodar
+
+// Rota básica
+app.get('/', (req, res) => {
+    res.send('Bem-vindo à minha API!');
+});
+
+// Inicie o servidor
+app.listen(port, () => {
+    console.log(`Servidor rodando em http://localhost:${port}`);
+});
+
+4. Rode a aplicação:
+Para rodar a aplicação, execute o comando node index.js no terminal a partir do diretório do seu projeto. Isso iniciará o servidor e ele estará ouvindo as requisições na porta especificada (nesse caso, a porta 3000).
+
+5. Teste a API:
+Agora você pode abrir um navegador ou usar uma ferramenta como o Postman para fazer requisições para http://localhost:3000 e ver a resposta da sua API.
