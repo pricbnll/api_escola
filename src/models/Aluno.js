@@ -10,7 +10,16 @@ const Aluno = connection.define('alunos', {
     },
     celular: {
         type: DataTypes.STRING,
+    },
+    email: {
+        type: DataTypes.STRING,
+    },
+    password: {
+        type: DataTypes.STRING,
     }
+    //cargo: {
+       // type: DataTypes.ENUM([aluno, professor])
+    //}
 })
 
 module.exports = Aluno

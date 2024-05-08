@@ -7,6 +7,12 @@
   Esta é uma API simples para gerenciamento de cursos, onde você pode realizar operações como criar, listar, atualizar e deletar alunos, cursos e matriculas.
   A API permite a pesquisa de cursos por nome e duração em horas.
 
+   - Separação de responsabilidade: 
+  Controllers - intuito de concentrar toda implementação daquela entidade = Aluno. Concentra o código em si daquela rota
+  Routes - tem finalidade de salvar todas as rotas
+  middleware - definir os middlewares da aplicação
+  models - acesso a tabela do banco de dados
+
 ## 🤖 Rodar o repositório:
 
 ### ≈Na primeira vez é necessário instalar as dependencias:
@@ -43,9 +49,11 @@ https://sequelize.org/docs/v6/core-concepts/model-basics/
 `npm install -g sequelize-cli` 
 ### instalar o dotenv
 `npm install dotenv`
+### instalar o JsonWebToken ( JWT )
+`npm install jsonwebtoken`
 
-
-## A API estará disponível em http://localhost:3000.
+--> IMPORTANT!!!!
+## A API estará disponível em http://localhost:3300
 
 
 ## 🛠️ Construído com
@@ -58,6 +66,9 @@ https://sequelize.org/docs/v6/core-concepts/model-basics/
 - Sequelize - aprendendo a usar migration, models, routes...
 - Postgres
 - Postman 
+- PGAdmin - para visualizar banco de dados
+- Drawio - fazer as relações das tabelas
+- JWT e Middleware - autenticação e validação
   
 
 ## 🧑🏻‍🏫 Professores
