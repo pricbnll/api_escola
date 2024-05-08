@@ -8,10 +8,10 @@
   A API permite a pesquisa de cursos por nome e duração em horas.
 
    - Separação de responsabilidade: 
-  Controllers - intuito de concentrar toda implementação daquela entidade = Aluno. Concentra o código em si daquela rota
-  Routes - tem finalidade de salvar todas as rotas
-  middleware - definir os middlewares da aplicação
-  models - acesso a tabela do banco de dados
+  - Controllers - intuito de concentrar toda implementação daquela entidade = Aluno. Concentra o código em si daquela rota
+  - Routes - tem finalidade de salvar todas as rotas
+  - Middleware - definir os middlewares da aplicação
+  - Models - acesso a tabela do banco de dados
 
 ## 🤖 Rodar o repositório:
 
