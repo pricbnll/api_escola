@@ -9,6 +9,20 @@ Conseguir ter um esqueleto inicial para formular API. Ter exemplos de routes, co
 - Routes - tem finalidade de salvar todas as rotas 
 - Middleware - definir os middlewares da aplicação 
 - Models - acesso a tabela do banco de dados
+# Semana 10/11 SENAI e FloripaMaisTech turma TRIP /2024
+
+## 🏦 Sobre o projeto de Banco de dados
+
+**Objetivo: Aprender a mexer com banco de dados e suas atualizações**
+
+  Esta é uma API simples para gerenciamento de cursos, onde você pode realizar operações como criar, listar, atualizar e deletar alunos, cursos e matriculas.
+  A API permite a pesquisa de cursos por nome e duração em horas.
+
+   - Separação de responsabilidade: 
+  - Controllers - intuito de concentrar toda implementação daquela entidade = Aluno. Concentra o código em si daquela rota
+  - Routes - tem finalidade de salvar todas as rotas
+  - Middleware - definir os middlewares da aplicação
+  - Models - acesso a tabela do banco de dados
 
 ## 🤖 Rodar o repositório:
 
