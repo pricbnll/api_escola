@@ -96,6 +96,7 @@ Na criação do login e senha fiz um acréscimo de colunas no <aluno> mas o corr
     - Quais alunos do sistema?
     - Quais professores do sistema?
 
+ 
 ## 📄 Acompanhe as resoluções e dicas de aulas
 
 **FuturoDev - Trip** - [GitHub do curso - API Escola](https://github.com/FuturoDEV-Trip/api_escola)
@@ -108,8 +109,7 @@ Na criação do login e senha fiz um acréscimo de colunas no <aluno> mas o corr
 * Qualquer dúvida ou sugestão de melhorar o código eu aceito - algumas escrivi acima;
 * Grata a todos os alunos da TRIP - voces são uns queriduxxxx 🫂;
 
+
 ## Video de apresentação do MiniProjeto 1
 
 [Video] - (https://drive.google.com/file/d/1agfYpY5Jyd_7RpiKP6R189ZY-Tchu0Zp/view?usp=drive_link)
-
-
