@@ -69,6 +69,24 @@ https://sequelize.org/docs/v6/core-concepts/model-basics/
 `npm install jsonwebtoken`
 
 
+## 🛠️ Construído com
+
+- Trello - aprendendo a criar e mover cards.
+- VsCode - aprendendo a usar a ferramenta e suas extensões.
+- GitHub - aprendendo a utilizar sempre enviando ou trazendo para meu local o repositório, fazendo alterações...
+- Node.js - Instalação
+- Express - CRUD
+- Sequelize - aprendendo a usar migration, models, routes...
+- Postgres
+- Postman 
+  
+
+## 🧑🏻‍🏫 Professores
+
+* **Rawan.H** - [GitHub](https://github.com/Hawangledt)
+* **Douglas Cavalcante** - [GitHub](https://github.com/douglas-cavalcante)
+
+
 ## Melhorias
 
 Na criação do login e senha fiz um acréscimo de colunas no <aluno> mas o correto seria fazer uma nova tabela <usuario> e mais uma tabela auxiliar <permissao> e nesta verificar se o usuário é um aluno ou professor. 
@@ -78,6 +96,23 @@ Na criação do login e senha fiz um acréscimo de colunas no <aluno> mas o corr
     - Quais alunos do sistema?
     - Quais professores do sistema?
 
+ 
+## 📄 Acompanhe as resoluções e dicas de aulas
+
+**FuturoDev - Trip** - [GitHub do curso - API Escola](https://github.com/FuturoDEV-Trip/api_escola)
+
+
+## 🎁 Expressões de gratidão
+
+* O Floripa Mais Tec é uma iniciativa da Prefeitura de Florianópolis, em parceria com SENAI/SC, SEBRAE e ACATE, que visa democratizar o acesso ao ensino tecnológico para todos, oferecendo cursos de Tecnologia gratuitos!  📢;
+* Lab365 e todos os monitores;
+* Qualquer dúvida ou sugestão de melhorar o código eu aceito - algumas escrivi acima;
+* Grata a todos os alunos da TRIP - voces são uns queriduxxxx 🫂;
+
+
+## Video de apresentação do MiniProjeto 1
+
+[Video] - (https://drive.google.com/file/d/1agfYpY5Jyd_7RpiKP6R189ZY-Tchu0Zp/view?usp=drive_link)
 
 ## Video de apresentação do MiniProjeto 1
 
