@@ -10,6 +10,7 @@ function exibirCursos(cursos) {
     });
 }
 
+
 // Função para carregar os cursos do servidor
 function carregarCursos() {
     

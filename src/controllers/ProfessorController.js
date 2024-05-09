@@ -2,7 +2,6 @@ const Professor = require("../models/Professor");
 
 class ProfessorController{
 
-
 //Rota para adicionar novo professor e validar os dados
 //http://localhost:3300/professores
 async cadastrar(req,res){

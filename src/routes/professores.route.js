@@ -17,4 +17,5 @@ professorRoutes.delete("/:id", auth, ProfessorController.deletarUm);
 
 professorRoutes.delete("/", auth, ProfessorController.deletarTodos);
 
+
 module.exports = professorRoutes;

@@ -29,3 +29,4 @@ document.getElementById("cursoForm").addEventListener("submit", function(event) 
         alert(error.message);
     });
 });
+
