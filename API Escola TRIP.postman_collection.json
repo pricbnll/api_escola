@@ -1,0 +1,573 @@
+{
+	"info": {
+		"_postman_id": "8d901b57-5f20-41c6-865e-bc48355db93e",
+		"name": "API Escola TRIP",
+		"description": "\\## 🏦 Sobre o projeto de Banco de dados  \n**Objetivo: Aprender a mexer com banco de dados e suas atualizações**  \nEsta é uma API simples para gerenciamento de cursos, onde você pode realizar operações como criar, listar, atualizar e deletar alunos, cursos e matriculas. A API permite a pesquisa de cursos por nome e duração em horas.\n\n\\## 🧑🏻‍🏫 Professores  \n\\* **Rawan.H** - \\[GitHub\\](https://github.com/Hawangledt)\\* **Douglas Cavalcante** - \\[GitHub\\](https://github.com/douglas-cavalcante)  \n  \n\\## 📄 Acompanhe as resoluções e dicas de aulas  \n**FuturoDev - Trip** - \\[GitHub do curso\\](https://github.com/FuturoDEV-Trip/modulo-01)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "33911854"
+	},
+	"item": [
+		{
+			"name": "Cadastra um novo aluno",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjE4LCJlbWFpbCI6InByaUBnbWFpbC5jb20iLCJub21lIjoiUHJpIiwiaWF0IjoxNzE1MDQ3OTM2fQ.cFGIVutJpRpHwXKCJ8EwPNUzyVn2rEtj9c6LZGrVYjo",
+						"type": "text",
+						"uuid": "a4917a4f-6335-4a55-9687-cfdae6c59c4a",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\": \"Carlos\",\n    \"data_nascimento\": \"2011-09-12\",\n    \"celular\":\"444-7777\",\n    \"email\": \"carlos@gmail.com\",\n    \"password\": \"2222\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3300/alunos"
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"pri@gmail.com\",\n    \"password\": \"1234\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3300/login"
+			},
+			"response": []
+		},
+		{
+			"name": "Listar todos os alunos",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {}
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjI2LCJlbWFpbCI6InByaUBnbWFpbC5jb20iLCJub21lIjoiUHJpc2NpbGxhIiwiaWF0IjoxNzE1MTIzOTc4fQ.e19xxouZQ804rtZtMhepm841vcMuttc7A82dQ4YS4NU",
+						"uuid": "26bad24f-c8e4-4904-968f-3137d5f0f5ef"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3300/alunos"
+			},
+			"response": []
+		},
+		{
+			"name": "Listar alunos pelo nome",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjE4LCJlbWFpbCI6InByaUBnbWFpbC5jb20iLCJub21lIjoiUHJpIiwiaWF0IjoxNzE0NzU5Mjc1fQ.lTUD-cqY_D83t-jz4lN6aN9sL5fuiczoSNhEcfCAVvQ",
+						"uuid": "0f647234-2c08-4649-b813-f3fe28cd19bf"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3300/alunos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3300",
+					"path": [
+						"alunos"
+					],
+					"query": [
+						{
+							"key": "Authorization",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjE4LCJlbWFpbCI6InByaUBnbWFpbC5jb20iLCJub21lIjoiUHJpIiwiaWF0IjoxNzE0NzU5Mjc1fQ.lTUD-cqY_D83t-jz4lN6aN9sL5fuiczoSNhEcfCAVvQ",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar alunos pelo id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjI2LCJlbWFpbCI6InByaUBnbWFpbC5jb20iLCJub21lIjoiUHJpc2NpbGxhIiwiaWF0IjoxNzE1MTIzOTc4fQ.e19xxouZQ804rtZtMhepm841vcMuttc7A82dQ4YS4NU",
+						"uuid": "42f7483c-3055-4fa0-bd24-bc3ae314e302"
+					}
+				],
+				"url": "http://localhost:3300/alunos/25"
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar um aluno pelo id",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjE4LCJlbWFpbCI6InByaUBnbWFpbC5jb20iLCJub21lIjoiUHJpIiwiaWF0IjoxNzE1MDQ3OTM2fQ.cFGIVutJpRpHwXKCJ8EwPNUzyVn2rEtj9c6LZGrVYjo",
+						"uuid": "a8747225-e335-43af-acba-bd29a32d344f"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\": \"Patrycia\",\n    \"data_nascimento\": \"2015-09-12\",\n    \"celular\":\"444-1111\",\n    \"email\": \"Patricia@gmail.com\",\n    \"password\": \"1234\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3300/alunos/22"
+			},
+			"response": []
+		},
+		{
+			"name": "Deletar um aluno pelo id",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjE4LCJlbWFpbCI6InByaUBnbWFpbC5jb20iLCJub21lIjoiUHJpIiwiaWF0IjoxNzE1MDQ3OTM2fQ.cFGIVutJpRpHwXKCJ8EwPNUzyVn2rEtj9c6LZGrVYjo",
+						"uuid": "9bedd2e8-7dc4-4b5b-b39e-d1806b8dbc38"
+					}
+				],
+				"url": "http://localhost:3300/alunos/24"
+			},
+			"response": []
+		},
+		{
+			"name": "Deletar todos os alunos",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjE4LCJlbWFpbCI6InByaUBnbWFpbC5jb20iLCJub21lIjoiUHJpIiwiaWF0IjoxNzE1MDQ3OTM2fQ.cFGIVutJpRpHwXKCJ8EwPNUzyVn2rEtj9c6LZGrVYjo",
+						"uuid": "2a8dffd3-6ae1-4274-b0fb-ec1afabc6aa3"
+					}
+				],
+				"url": "http://localhost:3300/alunos"
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastra uma matricula",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjE4LCJlbWFpbCI6InByaUBnbWFpbC5jb20iLCJub21lIjoiUHJpIiwiaWF0IjoxNzE1MDQ3OTM2fQ.cFGIVutJpRpHwXKCJ8EwPNUzyVn2rEtj9c6LZGrVYjo",
+						"uuid": "6812ab67-0490-460d-b250-33f200b4487e",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\": \"Carlos\",\n    \"data_nascimento\": \"2011-09-12\",\n    \"celular\":\"444-7777\",\n    \"email\": \"carlos@gmail.com\",\n    \"password\": \"2222\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3300/alunos"
+			},
+			"response": []
+		},
+		{
+			"name": "Listar todas as matriculas",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjE4LCJlbWFpbCI6InByaUBnbWFpbC5jb20iLCJub21lIjoiUHJpIiwiaWF0IjoxNzE1MDQ3OTM2fQ.cFGIVutJpRpHwXKCJ8EwPNUzyVn2rEtj9c6LZGrVYjo",
+						"uuid": "4e1691f6-ac4a-4f57-8828-988850f88399"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3300/matriculas?Aut",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3300",
+					"path": [
+						"matriculas"
+					],
+					"query": [
+						{
+							"key": "Aut",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Criar um novo curso",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjE4LCJlbWFpbCI6InByaUBnbWFpbC5jb20iLCJub21lIjoiUHJpIiwiaWF0IjoxNzE1MDQ3OTM2fQ.cFGIVutJpRpHwXKCJ8EwPNUzyVn2rEtj9c6LZGrVYjo",
+						"uuid": "111e8ea3-fca0-4d1b-8d9f-a48820c04813"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\": \"Design\",\n    \"duracao_horas\": 200\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3300/cursos"
+			},
+			"response": []
+		},
+		{
+			"name": "Listar todos os cursos",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjE4LCJlbWFpbCI6InByaUBnbWFpbC5jb20iLCJub21lIjoiUHJpIiwiaWF0IjoxNzE1MDQ3OTM2fQ.cFGIVutJpRpHwXKCJ8EwPNUzyVn2rEtj9c6LZGrVYjo",
+						"uuid": "91e8218e-1b0f-4cd4-8fbb-baac989a394b"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3300/cursos"
+			},
+			"response": []
+		},
+		{
+			"name": "Listar cursos pelo nome",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjE4LCJlbWFpbCI6InByaUBnbWFpbC5jb20iLCJub21lIjoiUHJpIiwiaWF0IjoxNzE1MDQ3OTM2fQ.cFGIVutJpRpHwXKCJ8EwPNUzyVn2rEtj9c6LZGrVYjo",
+						"uuid": "1b30547a-4781-4682-b715-fce7c69d06b7"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3300/cursos?nome=Frontend",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3300",
+					"path": [
+						"cursos"
+					],
+					"query": [
+						{
+							"key": "nome",
+							"value": "Frontend"
+						},
+						{
+							"key": null,
+							"value": "Frontend",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar curso pelo id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjE4LCJlbWFpbCI6InByaUBnbWFpbC5jb20iLCJub21lIjoiUHJpIiwiaWF0IjoxNzE1MDQ3OTM2fQ.cFGIVutJpRpHwXKCJ8EwPNUzyVn2rEtj9c6LZGrVYjo",
+						"uuid": "e3cebf53-a8f6-48ef-8e72-4ae9bda8b17b"
+					}
+				],
+				"url": "http://localhost:3300/cursos/20"
+			},
+			"response": []
+		},
+		{
+			"name": "Listar cursos pelo nome e duração de horas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3300/cursos?nome=Frontend",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3300",
+					"path": [
+						"cursos"
+					],
+					"query": [
+						{
+							"key": "nome",
+							"value": "Frontend"
+						},
+						{
+							"key": null,
+							"value": "Frontend",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar um curso pelo id",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjE4LCJlbWFpbCI6InByaUBnbWFpbC5jb20iLCJub21lIjoiUHJpIiwiaWF0IjoxNzE1MDQ3OTM2fQ.cFGIVutJpRpHwXKCJ8EwPNUzyVn2rEtj9c6LZGrVYjo",
+						"uuid": "e6b0bde2-53e5-4d0e-be66-d49e0ec016d3"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\": \"Design Grafico\",\n    \"duracao_horas\": 500\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3300/cursos/28"
+			},
+			"response": []
+		},
+		{
+			"name": "Deletar um curso pelo id",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjE4LCJlbWFpbCI6InByaUBnbWFpbC5jb20iLCJub21lIjoiUHJpIiwiaWF0IjoxNzE1MDQ3OTM2fQ.cFGIVutJpRpHwXKCJ8EwPNUzyVn2rEtj9c6LZGrVYjo",
+						"uuid": "d4abe808-9292-4924-ba4f-c5a84b489a17"
+					}
+				],
+				"url": "http://localhost:3300/cursos/28"
+			},
+			"response": []
+		},
+		{
+			"name": "Deletar todos os cursos",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjE4LCJlbWFpbCI6InByaUBnbWFpbC5jb20iLCJub21lIjoiUHJpIiwiaWF0IjoxNzE1MDQ3OTM2fQ.cFGIVutJpRpHwXKCJ8EwPNUzyVn2rEtj9c6LZGrVYjo",
+						"uuid": "db878e77-82bd-47f7-9531-664a83381add"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3300/cursos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3300",
+					"path": [
+						"cursos"
+					],
+					"query": [
+						{
+							"key": "Auth",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastra um novo professor",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\": \"Paulo\",\n    \"celular\":\"(48)99888111\",\n    \"especialidade\": \"Português\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3300/professores"
+			},
+			"response": []
+		},
+		{
+			"name": "Listar todos os professores",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:3300/professores"
+			},
+			"response": []
+		},
+		{
+			"name": "Listar professores pelo nome",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3300/professores?nome=Paulo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3300",
+					"path": [
+						"professores"
+					],
+					"query": [
+						{
+							"key": "nome",
+							"value": "Paulo"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar professores pelo id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:3300/professores/8"
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar um professor pelo id",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjE4LCJlbWFpbCI6InByaUBnbWFpbC5jb20iLCJub21lIjoiUHJpIiwiaWF0IjoxNzE1MDQ3OTM2fQ.cFGIVutJpRpHwXKCJ8EwPNUzyVn2rEtj9c6LZGrVYjo",
+						"uuid": "d914fcb1-910d-4521-8a7a-8d87e7d30036"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\": \"Paulo\",\n    \"celular\":\"(48)99889999\",\n    \"especialidade\": \"Português\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3300/professores/8"
+			},
+			"response": []
+		},
+		{
+			"name": "Deletar um professor pelo id",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjE4LCJlbWFpbCI6InByaUBnbWFpbC5jb20iLCJub21lIjoiUHJpIiwiaWF0IjoxNzE1MDQ3OTM2fQ.cFGIVutJpRpHwXKCJ8EwPNUzyVn2rEtj9c6LZGrVYjo",
+						"uuid": "b5b6ecef-920e-479a-a6d6-7fe22088b9f2"
+					}
+				],
+				"url": "http://localhost:3300/professores/8"
+			},
+			"response": []
+		},
+		{
+			"name": "Deletar todos os professores",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjE4LCJlbWFpbCI6InByaUBnbWFpbC5jb20iLCJub21lIjoiUHJpIiwiaWF0IjoxNzE1MDQ3OTM2fQ.cFGIVutJpRpHwXKCJ8EwPNUzyVn2rEtj9c6LZGrVYjo",
+						"uuid": "b554c59c-6544-4598-85db-86fe39c6fce9"
+					}
+				],
+				"url": "http://localhost:3300/professores"
+			},
+			"response": []
+		}
+	]
+}
