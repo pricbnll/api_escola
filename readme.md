@@ -1,14 +1,3 @@
-## 🏦 Sobre o projeto: Exemplo_API_projetos_inicio
-
-**Objetivo: ter um esqueleto inicial para copiar para outra API**
-
-Conseguir ter um esqueleto inicial para formular API. Ter exemplos de routes, controles, auth, middleware... Um formato inicial para aprimorar em qualquer projeto subsequente.
-
-**Separação de responsabilidade: **
-- Controllers - intuito de concentrar toda implementação daquela entidade = Aluno. Concentra o código em si daquela rota 
-- Routes - tem finalidade de salvar todas as rotas 
-- Middleware - definir os middlewares da aplicação 
-- Models - acesso a tabela do banco de dados
 # Semana 10/11 SENAI e FloripaMaisTech turma TRIP /2024
 
 ## 🏦 Sobre o projeto de Banco de dados
@@ -117,30 +106,3 @@ Na criação do login e senha fiz um acréscimo de colunas no <aluno> mas o corr
 
 [Video] - (https://drive.google.com/file/d/1agfYpY5Jyd_7RpiKP6R189ZY-Tchu0Zp/view?usp=drive_link)
 
-## Video de apresentação do MiniProjeto 1
-
-[Video] - (https://drive.google.com/file/d/1agfYpY5Jyd_7RpiKP6R189ZY-Tchu0Zp/view?usp=drive_link)
-
-3. Crie a estrutura básica da API:
-No arquivo index.js, você pode começar importando o Express e criando uma instância dele:
-javascript
-
-const express = require('express');
-const app = express();
-const port = 3000; // Porta em que o servidor vai rodar
-
-// Rota básica
-app.get('/', (req, res) => {
-    res.send('Bem-vindo à minha API!');
-});
-
-// Inicie o servidor
-app.listen(port, () => {
-    console.log(`Servidor rodando em http://localhost:${port}`);
-});
-
-4. Rode a aplicação:
-Para rodar a aplicação, execute o comando node index.js no terminal a partir do diretório do seu projeto. Isso iniciará o servidor e ele estará ouvindo as requisições na porta especificada (nesse caso, a porta 3000).
-
-5. Teste a API:
-Agora você pode abrir um navegador ou usar uma ferramenta como o Postman para fazer requisições para http://localhost:3000 e ver a resposta da sua API.
