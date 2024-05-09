@@ -78,15 +78,6 @@ Na criação do login e senha fiz um acréscimo de colunas no <aluno> mas o corr
     - Quais alunos do sistema?
     - Quais professores do sistema?
 
-## Melhorias
-
-Na criação do login e senha fiz um acréscimo de colunas no <aluno> mas o correto seria fazer uma nova tabela <usuario> e mais uma tabela auxiliar <permissao> e nesta verificar se o usuário é um aluno ou professor. 
-
-    - Data.types.ENUM([aluno, professor])
-    - 1 CRUD para usuário
-    - Quais alunos do sistema?
-    - Quais professores do sistema?
-
 
 ## Video de apresentação do MiniProjeto 1
 
