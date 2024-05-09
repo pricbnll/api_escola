@@ -69,20 +69,6 @@ https://sequelize.org/docs/v6/core-concepts/model-basics/
 `npm install jsonwebtoken`
 
 
-
-CHATGPT
- 
- Aqui está um exemplo básico de como criar uma API simples usando Node.js com o framework Express:
-
-1. Instale as dependências:
-Certifique-se de ter o Node.js instalado em seu sistema. Você pode criar um novo diretório para o projeto e, em seguida, dentro desse diretório, inicialize um novo projeto Node.js e instale o Express:
-bash
-
-`mkdir exemplo-api`
-`cd exemplo-api`
-`npm init -y`
-`npm install express``
-
 ## Melhorias
 
 Na criação do login e senha fiz um acréscimo de colunas no <aluno> mas o correto seria fazer uma nova tabela <usuario> e mais uma tabela auxiliar <permissao> e nesta verificar se o usuário é um aluno ou professor. 
