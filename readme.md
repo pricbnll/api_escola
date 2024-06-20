@@ -1,4 +1,4 @@
-# Semana 10/11 SENAI e FloripaMaisTech turma TRIP /2024
+# MINI PROJETO MÓDULO 1 - Semana 10/11 SENAI e FloripaMaisTech turma TRIP /2024
 
 ## 🏦 Sobre o projeto de Banco de dados
 
