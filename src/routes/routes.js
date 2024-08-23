@@ -5,8 +5,6 @@ const loginRoutes = require("./login.route");
 const matriculaRoutes = require("./matriculas.route");
 const professorRoutes = require("./professores.route");
 const rbacRoutes = require("./rbac.route");
-//const {RbacRoutes} = require("./rbac.route"); //testar se funciona igual ao de cima chamado a função
-
 
 const routes = Router();
 
