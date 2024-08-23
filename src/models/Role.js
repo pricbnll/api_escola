@@ -10,7 +10,7 @@ const Role = connection.define("role", {
         primaryKey: true,
         autoIncrement: true
     },
-    description: {
+    descricao: {
         type: DataTypes.STRING,
         unique: true
     },

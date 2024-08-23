@@ -1,5 +1,6 @@
 const Permission = require("../models/Permission");
 const Role = require("../models/Role");
+const User = require("../models/User");
 
 class RbacController {
   async createOnePermission(req, res) {
@@ -29,19 +30,19 @@ class RbacController {
       return res.status(500).send("Algo deu errado!");
     }
   }
-  async createOneRole(req, res) {
-    //cria uma role
+  async createOneRole() {
     try {
       const dados = req.body;
 
-      if (!dados.email && !dados.password) {
-        return res.status(400).send("O email e a senha são obrigatórios");
+      if (!dados.descricao) {
+        return res.status(400).send("A descrição é obrigatória");
       }
 
-      const roleExists = await Role.findOne({ where: { email: dados.email } });
-
+      const roleExists = await Role.findOne({
+        where: { descricao: dados.descricao },
+      });
       if (roleExists) {
-        return res.status(400).send("Já existe uma role com esse email!");
+        return res.status(400).send("Já existe uma função com essa descrição!");
       }
 
       const novo = await Role.create(dados);
@@ -69,13 +70,20 @@ class RbacController {
     try {
       const { id } = req.params;
 
-      const role = await Role.findByPk(id);
+      const role = await Role.findByPk(id, {
+        include: [{ model: Permission }],
+      });
+
+      //   const role = await Role.findOne({
+      //     where: { id },
+      //     include: [{model: Permission}]
+      // });
 
       if (!role) {
         return res.status(404).send("Role não encontrada!");
       }
 
-      const permissions = await role.getPermissions(); //método gerado pelo sequelize
+      const permissions = await role.getPermissions(); //método gerado pelo sequelize, professor nao colocou!
 
       return res.status(200).send(permissions);
     } catch (error) {
@@ -86,17 +94,17 @@ class RbacController {
   async addRoleToUser(req, res) {
     //adiciona uma role a um usuário
     try {
-      const { idUser, idRole } = req.params; 
-      
-      const user = await User.findByPk(idUser); 
-      const role = await Role.findByPk(idRole);
-    
-      if(!user || !role) {
-        return res.status(404).send("Usuário e role não encontrados!");
-    }   
+      const { userId, roleId } = req.params;
 
-    const [ result ] = await user.addRole(role); 
-    return res.status(200).send(result);
+      const user = await User.findByPk(userId);
+      const role = await Role.findByPk(roleId);
+
+      if (!user || !role) {
+        return res.status(404).send("Usuário e role não encontrados!");
+      }
+
+      const [result] = await user.addRole(role);
+      return res.status(200).send(result);
     } catch (error) {
       console.log(error.message);
       return res.status(500).send("Algo deu errado!");
@@ -105,23 +113,22 @@ class RbacController {
   async addPermissionToRole(req, res) {
     //adiciona uma permission a uma role
     try {
-      const { idRole, idPermission } = req.params; 
-      
-      const role = await Role.findByPk(idRole); 
+      const { idRole, idPermission } = req.params;
+
+      const role = await Role.findByPk(idRole);
       const permission = await Permission.findByPk(idPermission);
 
-      if(!role || !permission) {
+      if (!role || !permission) {
         return res.status(404).send("Role e permissão não encontradas!");
-    }
+      }
 
-      const [ result ] = await role.addPermission(permission); 
-       return res.status(200).send(result);
+      const [result] = await role.addPermission(permission);
+      return res.status(200).send(result);
     } catch (error) {
       console.log(error.message);
       return res.status(500).send("Algo deu errado!");
     }
   }
-
 
   async createOnePermission() {}
   async createOneRole() {}
@@ -131,3 +138,5 @@ class RbacController {
   async addPermissionToRole() {}
   async addRoleToUser() {}
 }
+
+module.exports = new RbacController();
