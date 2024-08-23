@@ -15,24 +15,13 @@
 
 ## 🤖 Rodar o repositório:
 
-Primeiro, crie sua .env e coloque seus dados :
-```
-DIALECT=postgres 
-HOST=localhost
-USERNAMEDB= "Qual o nome da tua DataBase no PGAdmin?" ex:postgres
-PASSWORDDB= "Qual a senha do PGAdmin?"ex:postgres
-DATABASE= "Qual o nome da database que colocou no PGAdmin?"ex:escola
-PORT=5432
-PORT_API= "Qual a porta que utilizará nas requisições?"ex:3000
-SECRET_JWT= "Qual a senha secreta para validar o JWT?"ex:Chocolate
-```
-
-
 ### ≈Na primeira vez é necessário instalar as dependencias:
 
 1. `npm install`
 2. Se for em ambiente local: `npm install --dev`
 3. `cp .env_example .env`
+
+*Aqui substitua por seus dados na .env para acessar o banco de dados no postgres
 
 ### Para rodar o repositório em ambiente local
 
