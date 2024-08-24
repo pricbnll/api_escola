@@ -5,6 +5,7 @@ const loginRoutes = require("./login.route");
 const matriculaRoutes = require("./matriculas.route");
 const professorRoutes = require("./professores.route");
 const rbacRoutes = require("./rbac.route");
+const userRouter = require("./user.route");
 
 const routes = Router();
 
@@ -14,5 +15,6 @@ routes.use("/matriculas", matriculaRoutes);
 routes.use("/professores", professorRoutes);
 routes.use("/login", loginRoutes);
 routes.use("/rbac" , rbacRoutes);
+routes.use('/user', userRouter)
 
 module.exports = routes;

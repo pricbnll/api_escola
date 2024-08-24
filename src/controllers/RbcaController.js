@@ -1,4 +1,5 @@
 const Permission = require("../models/Permission");
+const PermissionRole = require("../models/PermissionRole");
 const Role = require("../models/Role");
 const User = require("../models/User");
 
@@ -94,17 +95,32 @@ class RbacController {
   async addRoleToUser(req, res) {
     //adiciona uma role a um usuário
     try {
-      const { userId, roleId } = req.params;
+      const { userId, roleId } = req.body;
 
-      const user = await User.findByPk(userId);
-      const role = await Role.findByPk(roleId);
-
-      if (!user || !role) {
-        return res.status(404).send("Usuário e role não encontrados!");
+      if (!userId || !roleId) {
+        return res
+          .status(404)
+          .send("O id da permissão e/ou role é obrigatório!");
       }
 
-      const [result] = await user.addRole(role);
-      return res.status(200).send(result);
+      const roleExists = await Role.findByPk(roleId);
+      const userExists = await Permission.findByPk(userId);
+
+      if (!roleExists) {
+        return res.status(400).send("Role não encontrada!");
+      }
+      if (!userExists) {
+        return res.status(404).send("Usuário não encontrado!");
+      }
+
+      // 1ª forma
+      const userRoleNovo = await PermissionRole.create({
+        userId: userId,
+        roleId: roleId,
+      });
+
+      return res.status(201).send(userRoleNovo);
+
     } catch (error) {
       console.log(error.message);
       return res.status(500).send("Algo deu errado!");
@@ -113,17 +129,35 @@ class RbacController {
   async addPermissionToRole(req, res) {
     //adiciona uma permission a uma role
     try {
-      const { idRole, idPermission } = req.params;
+      const { roleId, permissionId } = req.body;
 
-      const role = await Role.findByPk(idRole);
-      const permission = await Permission.findByPk(idPermission);
-
-      if (!role || !permission) {
-        return res.status(404).send("Role e permissão não encontradas!");
+      if (!roleId || !permissionId) {
+        return res
+          .status(404)
+          .send("O id da permissão e/ou role é obrigatório!");
       }
 
-      const [result] = await role.addPermission(permission);
-      return res.status(200).send(result);
+      const roleExists = await Role.findByPk(roleId);
+      const permissionExists = await Permission.findByPk(permissionId);
+
+      if (!roleExists) {
+        return res.status(400).send("Role não encontrada!");
+      }
+      if (!permissionExists) {
+        return res.status(404).send("Permissão não encontrada!");
+      }
+
+      // 1ª forma
+      const permissionRoleNovo = await PermissionRole.create({
+        permissionId: permissionId,
+        roleId: roleId,
+      });
+
+      // 2ª forma - método auxiliar criado pelo sequelize
+      // await roleExists.addPermissions(permissionExists)
+
+      return res.status(201).send(permissionRoleNovo);
+
     } catch (error) {
       console.log(error.message);
       return res.status(500).send("Algo deu errado!");
